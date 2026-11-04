@@ -127,7 +127,9 @@ ggsave("output/figuras/t4p1_g2_salario_minimo.png", g2, width = 8, height = 5, d
 # puntos (la tendencia), no en la longitud de un área. En barras, el largo
 # (el área) codifica el valor, así que truncar el eje exagera visualmente las
 # diferencias (el factor de engaño). En la línea el eje igual se rotula con
-# claridad para no confundir.
+# claridad para no confundir. Aquí, entre 2014 y 2025 el mínimo nominal subió 
+# 135 % y el real 44 %: lo que importa es esa diferencia de trayectoria, no 
+# cuánto mide la línea desde cero
 
 # b) ¿Qué ganas con color Y tipo de línea?
 # Codificación redundante: si el gráfico se imprime en blanco y negro o lo
@@ -163,6 +165,14 @@ comp <- ocupados |>
   arrange(desc(abs(brecha_pp)))
 comp
 
+sin_pond <- ocupados |>
+  count(sexo, categoria) |>
+  group_by(sexo) |> mutate(prop = n / sum(n)) |> ungroup() |>
+  select(-n) |>
+  pivot_wider(names_from = sexo, values_from = prop) |>
+  mutate(brecha_pp = (Mujeres - Hombres) * 100)
+sin_pond
+
 mayor_dif <- comp$categoria[1]
 menor_dif <- comp$categoria[which.min(abs(comp$brecha_pp))]
 
@@ -187,6 +197,6 @@ ggsave("output/figuras/t4p1_g3_ene_categoria_sexo.png", g3, width = 9, height = 
 # mujeres (0,08 puntos).
 
 # b) Sin weight = fact_cal, el porcentaje de mujeres asalariadas privadas
-# pasaría de 53,9 % a 57,1 % (el tuyo puede ser otro). Sin ponderar, los
-# porcentajes describen a los encuestados y no a Chile, porque cada registro
-# representa a un número distinto de personas.
+# pasaría de 53,9 % a 50,4 %. Sin ponderar, los porcentajes describen a los 
+# encuestados y no a Chile, porque cada registro representa a un número distinto
+# de personas.
