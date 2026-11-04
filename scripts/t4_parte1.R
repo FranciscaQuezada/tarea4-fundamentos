@@ -66,7 +66,7 @@ ggsave("output/figuras/t4p1_g1_casen_educ_ingreso.png", g1, width = 8, height = 
 # ¿Qué pregunta responde este gráfico que no respondería la versión con una sola recta? 
 # Una sola recta responde "¿cuánto aumenta el ingreso, en promedio, por año de
 # escolaridad?". Con una recta por género respondemos "¿el retorno a la
-# educación es DISTINTO entre hombres y mujeres?" comparamos pendientes
+# educación es distinto entre hombres y mujeres?" comparamos pendientes
 # (rendimiento por año) y también niveles (intercepto). Una recta común puede
 # esconder que las pendientes difieren (efecto de interacción educ × género). 
 # En esta muestra, cada año de escolaridad se asocia a $46.862 más de ingreso
@@ -134,7 +134,9 @@ ggsave("output/figuras/t4p1_g2_salario_minimo.png", g2, width = 8, height = 5, d
 # b) ¿Qué ganas con color Y tipo de línea?
 # Codificación redundante: si el gráfico se imprime en blanco y negro o lo
 # ve una persona daltónica, las series siguen distinguiéndose por el trazo
-# (continuo vs. punteado); el color refuerza la lectura en pantalla.
+# (continuo vs. punteado); el color refuerza la lectura en pantalla.Así, aunque 
+# el nominal y el real están a niveles distintos, cada serie se reconoce por su 
+# color y por su trazo (continuo y punteado).
 
 ### Gráfico 3 · ENE: en qué trabajan hombres y mujeres
 ene <- read.csv2("data/raw/ene-2026-06-mjj.csv")
